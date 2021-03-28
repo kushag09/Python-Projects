@@ -51,7 +51,6 @@ def takeCommand():
         print('Listening...')
         y.pause_threshold = 0.7
         y.phrase_threshold = 1
-        #Increase energy_threshold to reduce background noise to more than 300
         audio = y.listen(source)
     try:
         print('Recognizing')
@@ -69,7 +68,6 @@ def takeCommand1():
         print('Listening...')
         y.pause_threshold = 0.7
         y.phrase_threshold = 1
-        #Increase energy_threshold to reduce background noise to more than 300
         audio = y.listen(source)
     try:
         print('Recognizing')
@@ -84,9 +82,9 @@ def sendEmail(to, subj, msg):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('thedavid090@gmail.com', 'winner@09')
+    server.login('YOUR EMAIL ADDRESS', 'YOUR PASSWORD')
     content = 'Subject: {}\n\n{}'.format(subj, msg)
-    server.sendmail('thedavid090@gmail.com', to, content)
+    server.sendmail('YOUR EMAIL ADDRESS', to, content)
     server.close()
 
 
@@ -157,7 +155,7 @@ while True:
 
                 elif 'new folder' in query:
                     try:
-                        prntdir = 'C:\\Users\\kush\\Desktop'
+                        prntdir = 'ENTER PATH TO CREATE FOLDER'
                         speak('What name would you like to give to the folder')
                         direc = takeCommand().capitalize()
                         path = os.path.join(prntdir, direc)
@@ -193,7 +191,7 @@ while True:
                         msg = takeCommand()
                         msg = msg.capitalize()
 
-                        to = 'kushag09@gmail.com'
+                        to = 'RECEPIENT EMAIL ADDRESS'
                         sendEmail(to, subj, msg)
 
                         speak('Email has been sent')
@@ -274,12 +272,13 @@ while True:
                 elif 'bye' in query:
                     speak('It was nice spending time with you sir, have a good time')
                     break
+                
+                elif 'play music' in query:
+                    music_dir = "ENTER YOUR SONGS PATH"
+                    songs = os.listdir(music_dir)
+                    os.startfile(os.path.join(music_dir, songs[0]))
+   
     else:
         continue
 
-    '''
-    elif 'play music' in query:
-        music_dir = ENTER YOUR SONGS PATH
-        songs = os.listdir(music_dir)
-        os.startfile(os.path.join(music_dir, songs[0]))
-    '''
+  
